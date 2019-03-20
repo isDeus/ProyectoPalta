@@ -20,6 +20,7 @@ public class Lector {
         try {
             FileReader fr = new FileReader(archivoCsv);
             BufferedReader br = new BufferedReader(fr);
+            br.readLine();
             while ((line = br.readLine()) != null) {
                 linea.add(line);
             }
