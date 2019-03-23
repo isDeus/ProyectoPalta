@@ -38,7 +38,7 @@ public class Lector {
         String[] lineas = new String[13];
         for(String item : linea){
             lineas = item.split(",");
-            Palta palta = new Palta(lineas[1],lineas[2],lineas[3],lineas[4],lineas[5],lineas[6],lineas[7],lineas[8],lineas[9],lineas[10],lineas[11],lineas[12],lineas[13]);
+            Palta palta = new Palta(lineas[1],Double.parseDouble(lineas[2]),Double.parseDouble(lineas[3]),Integer.parseInt(lineas[4]),Integer.parseInt(lineas[5]),Integer.parseInt(lineas[6]),Double.parseDouble(lineas[7]),Double.parseDouble(lineas[8]),Double.parseDouble(lineas[9]),Double.parseDouble(lineas[10]),lineas[11],Integer.parseInt(lineas[12]),lineas[13]);
             paltas.add(palta);
         }
         return paltas;
