@@ -24,21 +24,21 @@ public class Lector {
             while ((line = br.readLine()) != null) {
                 linea.add(line);
             }
-            System.out.println(linea.get(1));
             paltas = separarDatos(linea);
 
         }catch (Exception e){
-
+            System.out.println("error");
         }
         return paltas;
     }
 
     private ArrayList<Palta> separarDatos(ArrayList<String> linea){
+        System.out.println(linea.get(0));
         ArrayList<Palta> paltas = new ArrayList<>();
-        String[] lineas = new String[13];
+        String[] lineas = new String[14];
         for(String item : linea){
             lineas = item.split(",");
-            Palta palta = new Palta(lineas[1],Double.parseDouble(lineas[2]),Double.parseDouble(lineas[3]),Integer.parseInt(lineas[4]),Integer.parseInt(lineas[5]),Integer.parseInt(lineas[6]),Double.parseDouble(lineas[7]),Double.parseDouble(lineas[8]),Double.parseDouble(lineas[9]),Double.parseDouble(lineas[10]),lineas[11],Integer.parseInt(lineas[12]),lineas[13]);
+            Palta palta = new Palta(lineas[1],Double.parseDouble(lineas[2]),Double.parseDouble(lineas[3]),Double.parseDouble(lineas[4]),Double.parseDouble(lineas[5]),Double.parseDouble(lineas[6]),Double.parseDouble(lineas[7]),Double.parseDouble(lineas[8]),Double.parseDouble(lineas[9]),Double.parseDouble(lineas[10]),lineas[11],Integer.parseInt(lineas[12]),lineas[13]);
             paltas.add(palta);
         }
         return paltas;
