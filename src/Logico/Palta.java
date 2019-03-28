@@ -77,7 +77,7 @@ public class Palta {
         return plu4770;
     }
 
-    public void setPlu4770(double plu4770) {
+    public void setPlu4770(double    plu4770) {
         this.plu4770 = plu4770;
     }
 
