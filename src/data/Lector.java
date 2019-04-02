@@ -33,7 +33,6 @@ public class Lector {
     }
 
     private ArrayList<Palta> separarDatos(ArrayList<String> linea){
-        System.out.println(linea.get(0));
         ArrayList<Palta> paltas = new ArrayList<>();
         String[] lineas = new String[14];
         for(String item : linea){

@@ -16,7 +16,6 @@ public class Palta {
     private int year;
     private String region;
 
-    //Cambiarle los tipos de datos de String a sus datos correspondientes. Aprender a usar date
     public Palta(String date, double averagePrice, double totalVolume, double plu4046, double plu4225, double plu4770, double totalBags, double smallBags, double largeBags, double xLargeBags, String type, int year, String region) {
         this.date = date;
         this.averagePrice = averagePrice;
@@ -77,7 +76,7 @@ public class Palta {
         return plu4770;
     }
 
-    public void setPlu4770(double    plu4770) {
+    public void setPlu4770(double plu4770) {
         this.plu4770 = plu4770;
     }
 

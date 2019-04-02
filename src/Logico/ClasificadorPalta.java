@@ -1,62 +1,23 @@
 package Logico;
 
-import data.Lector;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Iterator;
 
-import java.util.*;
-
-public class Informacion {
+public class ClasificadorPalta {
 
     ArrayList<Palta> paltas;
 
-    public Informacion(){
-        Lector lc = new Lector();
-        this.paltas = lc.leerCsv();
+    public ClasificadorPalta(ArrayList<Palta> paltas){
+        this.paltas = paltas;
     }
 
-
-    public void MenuPrincipal(){
-
-        Scanner sc = new Scanner(System.in);
-        boolean loop = true;
-        while(true){
-            System.out.println("Eliga la opcion correspondiente");
-            System.out.println("1)Buscar palta");
-            System.out.println("2)Buscar palta mas barata");
-            System.out.println("3)Salir del menu");
-            int eleccion = sc.nextInt();
-            switch(eleccion) {
-                case 1:
-                    System.out.println("Ingrese la region");
-                    buscarPalta(paltas, "Albany");
-                    break;
-                case 2 :
-                    buscarPaltaBarata();
-                    break;
-                case 3:
-                    System.exit(0);
-                    break;
-                default:
-                    break;
-            }
-        }
-    }
-
-    private void buscarPalta(ArrayList<Palta> paltas, String region){
-        Iterator<Palta> it = paltas.iterator();
-        System.out.println("Starting");
-        while(it.hasNext()){
-            Palta palta = it.next();
-            if(palta.getRegion().equals(region)){
-                System.out.println(palta.getDate());
-            }
-        }
-        System.out.println("done");
-    }
-
-    private void buscarPaltaBarata(){
+    public Palta obtenerPrecioBajo(){
         Comparator<Palta> cmp = Comparator.comparing(Palta::getAveragePrice);
         Collections.sort(this.paltas, cmp);
         mostrarPalta(this.paltas.get(0));
+        return this.paltas.get(0);
     }
 
     private void mostrarPalta(Palta palta){
@@ -70,27 +31,30 @@ public class Informacion {
         System.out.println("Region "+palta.getRegion());
     }
 
-    private void listarPreciosBaratos(int lugares){
+    public ArrayList<Palta> listarPreciosBaratos(int lugares){
+        ArrayList<Palta> paltasLugares = new ArrayList<>();
         Comparator<Palta> cmp = Comparator.comparing(Palta::getAveragePrice);
         Collections.sort(this.paltas, cmp);
         for(int i = 0; i < lugares; i++){
             mostrarPalta(this.paltas.get(i));
+            paltasLugares.add(this.paltas.get(i));
         }
+        return paltasLugares;
     }
 
-    private ArrayList<Palta> obtenerPorAño(int año){
+    public ArrayList<Palta> obtenerPorAño(int año){
         ArrayList<Palta> paltasAño = new ArrayList<>();
         Iterator<Palta> it = this.paltas.iterator();
         while(it.hasNext()){
-                Palta palta = it.next();
-                if(palta.getYear() == año){
-                    paltasAño.add(palta);
-                }
+            Palta palta = it.next();
+            if(palta.getYear() == año){
+                paltasAño.add(palta);
+            }
         }
         return paltasAño;
     }
 
-    private ArrayList<Palta> obtenerIntervaloAño(int año1, int año2){
+    public ArrayList<Palta> obtenerIntervaloAño(int año1, int año2){
         int añoCambiable;
         if(año1 > año2){
             añoCambiable = año1;
@@ -105,11 +69,13 @@ public class Informacion {
                 paltasAño.add(palta);
             }
         }
+        Comparator<Palta> cmp = Comparator.comparing(Palta::getYear);
+        Collections.sort(paltasAño, cmp);
         return paltasAño;
     }
 
-    private ArrayList<Palta> obtenerIntervaloPrecio(int precio1, int precio2){
-        int precioCambiable;
+    public ArrayList<Palta> obtenerIntervaloPrecio(double precio1, double precio2){
+        double precioCambiable;
         if(precio1 > precio2){
             precioCambiable = precio1;
             precio1 = precio2;
@@ -123,10 +89,12 @@ public class Informacion {
                 paltasPrecio.add(palta);
             }
         }
+        Comparator<Palta> cmp = Comparator.comparing(Palta::getAveragePrice);
+        Collections.sort(paltasPrecio, cmp);
         return paltasPrecio;
     }
 
-    private ArrayList<Palta> obtenerPorRegion(String region){
+    public ArrayList<Palta> obtenerPorRegion(String region){
         ArrayList<Palta> paltasRegion = new ArrayList<>();
         Iterator<Palta> it = this.paltas.iterator();
         while(it.hasNext()){
@@ -135,10 +103,12 @@ public class Informacion {
                 paltasRegion.add(palta);
             }
         }
+        Comparator<Palta> cmp = Comparator.comparing(Palta::getRegion);
+        Collections.sort(paltasRegion, cmp);
         return paltasRegion;
     }
 
-    private ArrayList<Palta> obtenerPorTipo(String tipo){
+    public ArrayList<Palta> obtenerPorTipo(String tipo){
         ArrayList<Palta> paltasTipo = new ArrayList<>();
         Iterator<Palta> it = this.paltas.iterator();
         while(it.hasNext()){
@@ -147,25 +117,27 @@ public class Informacion {
                 paltasTipo.add(palta);
             }
         }
+        Comparator<Palta> cmp = Comparator.comparing(Palta::getType);
+        Collections.sort(paltasTipo, cmp);
         return paltasTipo;
     }
 
-    private void sortPrecio(){
+    public void sortPrecio(){
         Comparator<Palta> cmp = Comparator.comparing(Palta::getAveragePrice);
         Collections.sort(this.paltas, cmp);
     }
 
-    private void sortAño(){
+    public void sortAño(){
         Comparator<Palta> cmp = Comparator.comparing(Palta::getYear);
         Collections.sort(this.paltas, cmp);
     }
 
-    private void sortTipo(){
+    public void sortTipo(){
         Comparator<Palta> cmp = Comparator.comparing(Palta::getType);
         Collections.sort(this.paltas, cmp);
     }
 
-    private void sortRegionTipo(){
+    public void sortRegionTipo(){
         Comparator<Palta> cmp = Comparator.comparing(Palta::getRegion);
         Collections.sort(this.paltas, cmp);
     }

@@ -1,23 +1,25 @@
 package Estructura;
 
+import Logico.Palta;
+
 import java.util.ArrayList;
 import java.util.EmptyStackException;
 
-public class Stack {
+public class StackPalta {
 
-    ArrayList<Object> arreglo;
+    ArrayList<Palta> arreglo;
 
-    public Stack(ArrayList<Object> array){
+    public StackPalta(ArrayList<Palta> array){
 
         this.arreglo = array;
     }
 
-    public Object push(Object object){
+    public Palta push(Palta object){
         this.arreglo.add(object);
         return object;
     }
 
-    public Object pop(){
+    public Palta pop(){
         if(this.arreglo.size() == 0){
             throw new EmptyStackException();
         }
@@ -27,7 +29,7 @@ public class Stack {
         }
     }
 
-    public Object peek(){
+    public Palta peek(){
         if (this.arreglo.isEmpty()){
             throw new EmptyStackException();
         }
@@ -37,7 +39,7 @@ public class Stack {
         }
     }
 
-    public int search(Object object){
+    public int search(Palta object){
         if (this.arreglo.size() == 0){
             return -1;
         }
